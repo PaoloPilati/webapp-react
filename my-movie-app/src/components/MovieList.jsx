@@ -1,11 +1,13 @@
-import MovieCard from "./movieCard";
+import MovieCard from "./MovieCard";
 
-export default function MovieList({ movies }) {
+export default function MovieList({ movies = [] }) {
   return (
     <div className="row">
-      {movies.map(m => (
-        <MovieCard key={m.id} movie={m} />
+
+      {movies.map(movie => (
+        <MovieCard key={movie.id} movie={movie}/>
       ))}
+
     </div>
   );
 }
