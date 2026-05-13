@@ -35,10 +35,10 @@ export default function MovieDetails() {
         <h1 className="mt-3">
           {movie.title}
         </h1>
-    </div>
-      <p>
-        Director: {movie.director}
-      </p>
+        <p className="py-3">
+          Director: {movie.director}
+        </p>
+      </div>
       <p>
         Genre: {movie.genre}
       </p>
