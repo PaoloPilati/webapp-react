@@ -8,7 +8,6 @@ import ReviewList from "../components/ReviewList";
 export default function MovieDetails() {
 
   const { id } = useParams();
-
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
@@ -26,7 +25,17 @@ export default function MovieDetails() {
 
   return (
     <div className="container py-4">
-      <h1>{movie.title}</h1>
+      <div className="text-center mb-4">
+        <img
+          src={movie.image}
+          alt={movie.title}
+          className="img-fluid rounded shadow-sm"
+          style={{ maxWidth: "300px" }}
+        />
+        <h1 className="mt-3">
+          {movie.title}
+        </h1>
+    </div>
       <p>
         Director: {movie.director}
       </p>
