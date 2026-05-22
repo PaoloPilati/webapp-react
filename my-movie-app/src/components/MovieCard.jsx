@@ -6,7 +6,7 @@ export default function MovieCard({ movie }) {
       <div className="card h-100 shadow-sm">
         <img
           src={movie.image}
-          className="card-img-top"
+          className="card-img-top movie-img"
           alt={movie.title}
         />
         <div className="card-body d-flex flex-column">
@@ -14,7 +14,7 @@ export default function MovieCard({ movie }) {
             {movie.title}
           </h5>
           <p className="card-text">
-            {movie.director}
+            Directed by {movie.director}
           </p>
           <div className="mt-auto">
             <Link to={`/movies/${movie.id}`} className="btn btn-primary">

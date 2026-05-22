@@ -2,3 +2,9 @@
   height: 6rem;
   width: auto;
 }
+
+.movie-img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
