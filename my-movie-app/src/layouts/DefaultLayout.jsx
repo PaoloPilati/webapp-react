@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom"
 import Navbar from "../components/Navbar"
+import Loader from "../components/Loader"
 
 export default function DefaultLayout() {
   return (
@@ -10,6 +11,7 @@ export default function DefaultLayout() {
         <main>
             <Outlet />
         </main>
+        <Loader />
     </>
   )
 }

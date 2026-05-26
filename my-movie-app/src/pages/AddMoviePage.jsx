@@ -47,7 +47,7 @@ function AddMoviePage() {
         <>
             <div className="card">
                 <header className="card-header">
-                    <h2>Add your Movie</h2>
+                    <h2>Upload a movie in our library</h2>
                 </header>
                 <div className="card-body">
                     <form onSubmit={handleSubmit}>
@@ -75,7 +75,7 @@ function AddMoviePage() {
                             <label>Image:</label>
                             <input name="image" type="file" className="form-control" onChange={setFieldValue} required/>
                         </div>
-                        <div className="d-flex justify-content-end pt-3">
+                        <div className="d-flex justify-content-end gap-2 pt-3">
                             <Link className="btn btn-secondary" to="/">Back</Link>
                             <button type="submit" className="btn btn-primary">
                                 Add Movie

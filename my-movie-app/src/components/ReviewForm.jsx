@@ -47,15 +47,15 @@ function ReviewForm({movie_id, refreshReviews}) {
             <div className="card-body">
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label>Name</label>
+                        <label>Name:</label>
                         <input type="text" name="name" className="form-control" value={formData.name} onChange={setFieldValue} required />
                     </div>
                     <div className="form-group">
-                        <label>Review</label>
+                        <label>Review:</label>
                         <textarea name="text" className="form-control" value={formData.text} onChange={setFieldValue} required></textarea>
                     </div>
                     <div className="form-group">
-                        <label>Vote</label>
+                        <label>Vote:</label>
                         <input type="number" name="vote" min="1" max="5" className="form-control" value={formData.vote} onChange={setFieldValue} required />
                     </div>
                     <div className="d-flex justify-content-end pt-3">
