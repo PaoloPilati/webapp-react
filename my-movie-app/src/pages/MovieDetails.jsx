@@ -13,14 +13,14 @@ export default function MovieDetails() {
 
   const fetchMovie = () => {
     axios
-      .get(`http://localhost:3000/movies/${id}`)
+      .get(`http://localhost:3000/api/movies/${id}`)
       .then((res) => {setMovie(res.data);})
       .catch((err) => {
         console.log(err);
       });
   }
 
-  useEffect(fetchMovie, []);
+  useEffect(() => { fetchMovie();}, [id]);
     
 
   return (
@@ -28,7 +28,7 @@ export default function MovieDetails() {
       <div className="text-center mb-4">
         <img
           src={movie?.image}
-          alt={movie.title}
+          alt={movie?.title}
           className="img-fluid rounded shadow-sm"
           style={{ maxWidth: "300px" }}
         />

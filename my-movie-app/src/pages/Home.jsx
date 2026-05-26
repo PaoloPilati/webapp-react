@@ -9,7 +9,7 @@ export default function Home() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/movies")
+      .get("http://localhost:3000/api/movies")
       .then((res) => { console.log(res.data);
                     setMovies(res.data);})
       .catch((err) => {console.log(err);});
