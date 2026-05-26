@@ -20,6 +20,17 @@ function ReviewForm({movie_id, refreshReviews}) {
     //Variabile di stato + destructuring target evento
     const [formData, setFormData] = useState(initialValueForm);
 
+    //variabile di stato per validazione
+    const [isFormValid, setIsFormValid] = useState(true);
+
+    //funzione check di validazione
+    const validateForm = () => {
+        if (!formData.text || !formData.name) return false
+        if (isNaN(formData.vote) || formData.vote < 1 || formData.vote > 5) return false
+
+        return true;
+    }
+
     const setFieldValue = (e) =>{
         const {name, value} = e.target;
 
@@ -29,7 +40,15 @@ function ReviewForm({movie_id, refreshReviews}) {
 
     //funzione di gestione dell'invio dati del form
     const handleSubmit = e => {
-    e.preventDefault();
+        e.preventDefault();
+
+        //check validazione
+        if(!validateForm()) {
+            setIsFormValid(false);
+        return;
+        }
+
+    setIsFormValid(true);
 
     setIsLoading(true);
 
@@ -38,6 +57,7 @@ function ReviewForm({movie_id, refreshReviews}) {
     })
         .then(() => {
             setFormData(initialValueForm);
+            setIsFormValid(true);
             refreshReviews();
         })
         .catch((err) => {
@@ -54,18 +74,19 @@ function ReviewForm({movie_id, refreshReviews}) {
                 <h5>Add your review</h5>
             </header>
             <div className="card-body">
+                {!isFormValid && <div className="alert alert-danger mb-3">The data in the form is not valid!</div>}
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Name:</label>
-                        <input type="text" name="name" className="form-control" value={formData.name} onChange={setFieldValue} required />
+                        <input type="text" name="name" className="form-control" value={formData.name} onChange={setFieldValue} />
                     </div>
                     <div className="form-group">
                         <label>Review:</label>
-                        <textarea name="text" className="form-control" value={formData.text} onChange={setFieldValue} required></textarea>
+                        <textarea name="text" className="form-control" value={formData.text} onChange={setFieldValue} ></textarea>
                     </div>
                     <div className="form-group">
                         <label>Vote:</label>
-                        <input type="number" name="vote" min="1" max="5" className="form-control" value={formData.vote} onChange={setFieldValue} required />
+                        <input type="number" name="vote" className="form-control" value={formData.vote} onChange={setFieldValue} />
                     </div>
                     <div className="d-flex justify-content-end pt-3">
                         <button type="submit" className="btn btn-primary">
