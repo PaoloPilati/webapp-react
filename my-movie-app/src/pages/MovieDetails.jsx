@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useGlobal } from "../context/GlobalContext";
+
 
 import axios from "axios";
 
@@ -10,13 +12,21 @@ export default function MovieDetails() {
 
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
+  const { setIsLoading } = useGlobal();
 
   const fetchMovie = () => {
+    setIsLoading(true);
+
     axios
       .get(`http://localhost:3000/api/movies/${id}`)
-      .then((res) => {setMovie(res.data);})
+      .then((res) => {
+        setMovie(res.data);
+      })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 

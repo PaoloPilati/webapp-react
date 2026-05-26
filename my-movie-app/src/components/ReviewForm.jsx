@@ -1,12 +1,15 @@
 import axios from "axios";
 import { useState } from "react";
+import { useGlobal } from "../context/GlobalContext";
+
 
 
 function ReviewForm({movie_id, refreshReviews}) {
 
     //API endpoint da chiamare
     const apiUrl = `http://localhost:3000/api/movies/${movie_id}/reviews`;
-
+    
+    const { setIsLoading } = useGlobal();
     //valore default oggetto form
     const initialValueForm = {
         "text": "",
@@ -26,16 +29,22 @@ function ReviewForm({movie_id, refreshReviews}) {
 
     //funzione di gestione dell'invio dati del form
     const handleSubmit = e => {
-        e.preventDefault();
-        axios.post(apiUrl, formData, {
-            headers: { 'Content-Type': 'application/json'}
-        })
+    e.preventDefault();
+
+    setIsLoading(true);
+
+    axios.post(apiUrl, formData, {
+        headers: { 'Content-Type': 'application/json' }
+    })
         .then(() => {
             setFormData(initialValueForm);
             refreshReviews();
         })
         .catch((err) => {
             console.log(err);
+        })
+        .finally(() => {
+            setIsLoading(false);
         });
     }
 

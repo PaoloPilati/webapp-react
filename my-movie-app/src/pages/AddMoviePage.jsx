@@ -1,9 +1,13 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useGlobal } from "../context/GlobalContext";
+
 
 
 function AddMoviePage() {
+
+    const { setIsLoading } = useGlobal();
 
    //API endpoint da chiamare
     const apiUrl = `http://localhost:3000/api/movies/`;
@@ -30,17 +34,21 @@ function AddMoviePage() {
 
     //funzione di gestione dell'invio dati del form
     const handleSubmit = e => {
-        e.preventDefault();
-        axios.post(apiUrl, formData, {
-            headers: { 'Content-Type': 'multipart/form-data'}
-        })
+    e.preventDefault();
+
+    setIsLoading(true);
+
+    axios.post(apiUrl, formData)
         .then(() => {
             setFormData(initialValueForm);
         })
         .catch((err) => {
             console.log(err);
+        })
+        .finally(() => {
+            setIsLoading(false);
         });
-    }
+}
     
     
     return (
