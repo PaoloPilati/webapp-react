@@ -9,12 +9,15 @@ export default function Navbar () {
                 <img src="/movieicon.svg" alt="logo" className="navbar-logo"/>
             </NavLink> 
             </div>
-            <div className="navbar-nav">
-                   
-               <NavLink to="/" end className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-                  Home
+            <div className="navbar-nav d-flex gap-3">
+
+                <NavLink to="/" end className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+                    Home
                 </NavLink>
 
+                <NavLink to="/movies/create" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+                    Add Movie
+                </NavLink>
 
             </div>
         </div>

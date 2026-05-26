@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import DefaultLayout from "./layouts/DefaultLayout";
 import Home from "./pages/Home";
+import AddMoviePage from "./pages/AddMoviePage";
 import MovieDetails from "./pages/MovieDetails";
 
 function App() {
@@ -8,7 +9,9 @@ function App() {
     <Routes>
       <Route element={<DefaultLayout />}>
         <Route path="/" element={<Home />} />
+        <Route path="/movies/create" element={<AddMoviePage />} />
         <Route path="/movies/:id" element={<MovieDetails />} />
+
       </Route>
     </Routes>
   );

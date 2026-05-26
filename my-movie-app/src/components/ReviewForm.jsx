@@ -48,15 +48,15 @@ function ReviewForm({movie_id, refreshReviews}) {
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Name</label>
-                        <input type="text" name="name" className="form-control" value={formData.name} onChange={setFieldValue} />
+                        <input type="text" name="name" className="form-control" value={formData.name} onChange={setFieldValue} required />
                     </div>
                     <div className="form-group">
                         <label>Review</label>
-                        <textarea name="text" className="form-control" value={formData.text} onChange={setFieldValue}></textarea>
+                        <textarea name="text" className="form-control" value={formData.text} onChange={setFieldValue} required></textarea>
                     </div>
                     <div className="form-group">
                         <label>Vote</label>
-                        <input type="number" name="vote" min="1" max="5" className="form-control" value={formData.vote} onChange={setFieldValue} />
+                        <input type="number" name="vote" min="1" max="5" className="form-control" value={formData.vote} onChange={setFieldValue} required />
                     </div>
                     <div className="d-flex justify-content-end pt-3">
                         <button type="submit" className="btn btn-primary">
@@ -66,7 +66,7 @@ function ReviewForm({movie_id, refreshReviews}) {
                 </form>
             </div>
         </div>
-    );
+    )
 }
 
 export default ReviewForm;
