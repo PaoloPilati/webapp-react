@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useGlobal } from "../context/GlobalContext";
+import { Link, useParams, useNavigate } from "react-router-dom"
 
+import { useGlobal } from "../context/GlobalContext";
 
 import axios from "axios";
 
@@ -10,6 +10,8 @@ import ReviewForm from "../components/ReviewForm";
 
 export default function MovieDetails() {
 
+  const redirect = useNavigate();
+  
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const { setIsLoading } = useGlobal();
@@ -24,6 +26,7 @@ export default function MovieDetails() {
       })
       .catch((err) => {
         console.log(err);
+        if (err.status === 404) redirect('/404')
       })
       .finally(() => {
         setIsLoading(false);
